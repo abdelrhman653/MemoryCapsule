@@ -77,12 +77,12 @@
 <body>
 
 <div class="card">
-    <!-- رأس الصفحة قبل الفتح -->
+    <!-- الشاشة المغلقة مع العداد -->
     <div id="locked-header">
         <h2>🍾 كبسولة زمنية مغلقة</h2>
         <p class="subtitle">خاصة بـ <b>Abderhman</b> | مخصص فتحها يوم الميلاد 🎂</p>
         
-        <div class="timer-grid" id="timer">
+        <div class="timer-grid">
             <div class="time-box"><div class="num" id="days">00</div><div class="label">يوم</div></div>
             <div class="time-box"><div class="num" id="hours">00</div><div class="label">ساعة</div></div>
             <div class="time-box"><div class="num" id="minutes">00</div><div class="label">دقيقة</div></div>
@@ -91,44 +91,57 @@
         <p style="font-size: 13px; color: #64748b;">⏳ سيتفتح المحتوى تلقائياً بمجرد انتهاء العداد!</p>
     </div>
 
-    <!-- المحتوى المخفي (بيفتح يوم 1/12/2026) -->
+    <!-- المحتوى السري (بيفتح تلقائياً يوم 1/12/2026) -->
     <div class="secret-content" id="secret">
         <h1 style="color: #f43f5e; margin-bottom: 15px;">🎉 كل سنة وأنت طيب يا عبدالرحمن! 🎂</h1>
         
-        <!-- رابط الصورة -->
+        <!-- حط رابط صورتك هنا مكان المصدر -->
         <img src="https://via.placeholder.com/150" alt="Abderhman" class="profile-img" id="myImage">
 
         <div class="message-box">
             <p>🌟 <b>النهاردة كملت 24 سنة! (1/12/2002 - 1/12/2026)</b></p>
             <br>
-            <p>رحلة جديدة وسنة جديدة بتنضم لعمرك.. كل سنة وأنت أطمح، أنجح، وأقرب لكل حلم بتسعى له. السنة دي بداية لمرحلة مختلفة في حياتك، خطوة جديدة في صانع المحتوى والتطوير والنجاحات الشديدة! 🚀</p>
+            <p>رحلة جديدة وسنة جديدة بتنضم لعمرك.. كل سنة وأنت أطمح، أنجح، وأقرب لكل حلم بتسعى له. السنة دي بداية لمرحلة مختلفة في حياتك، خطوة جديدة في البرمجة والتطوير والنجاحات الشديدة! 🚀</p>
             <br>
             <p>افتكر دايماً إن التعب والتعلم والمجهود اللي بتعمله النهاردة هو اللي بيصنع المستقبل الاحترافي اللي يستاهلك. كل سنة وأنت طيب وبخير يا بطل! ❤️✨</p>
         </div>
 
-        <!-- ملف الصوت -->
+        <!-- ملف الصوت أغنية عيد الميلاد (حط اسم ملف الأغنية عندك) -->
         <audio id="birthdaySong" src="song.mp3" preload="auto"></audio>
     </div>
 </div>
 
 <script>
-    // موعد الفتح: 1 ديسمبر 2026 الساعة 00:00:00 (منتصف الليل)
+    // تاريخ الفتح: 1 ديسمبر 2026 الساعة 00:00:00
     const targetDate = new Date("2026-12-01T00:00:00").getTime(); 
 
-    const interval = setInterval(() => {
+    const updateTimer = () => {
         const now = new Date().getTime();
         const distance = targetDate - now;
 
         if (distance <= 0) {
-            clearInterval(interval);
+            clearInterval(timerInterval);
             document.getElementById("locked-header").style.display = "none";
             document.getElementById("secret").style.display = "block";
             
-            // تشغيل الأغنية تلقائياً عند الفتح
             const song = document.getElementById("birthdaySong");
-            if (song) { song.play().catch(e => console.log("Audio play blocked")); }
+            if (song) { song.play().catch(e => console.log("Audio autoplay prevented")); }
         } else {
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance %Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(d).padStart(2, '0');
+            document.getElementById("hours").innerText = String(h).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(m).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(s).padStart(2, '0');
+        }
+    };
+
+    updateTimer();
+    const timerInterval = setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
