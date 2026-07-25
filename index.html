@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كبسولة يوم ميلاد عبدالرحمن 🍾✨</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 480px;
+            width: 100%;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        h2 { color: #f43f5e; margin-bottom: 10px; font-size: 24px; }
+        p.subtitle { color: #cbd5e1; font-size: 15px; margin-bottom: 25px; }
+        
+        /* العداد التنازلي */
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0 30px 0;
+            direction: ltr;
+        }
+        .time-box {
+            background: rgba(15, 23, 42, 0.7);
+            padding: 12px 5px;
+            border-radius: 12px;
+            border: 1px solid #38bdf8;
+        }
+        .time-box .num { font-size: 22px; font-weight: bold; color: #38bdf8; }
+        .time-box .label { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+
+        /* المحتوى المخفي */
+        .secret-content {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #f43f5e;
+            margin-bottom: 15px;
+        }
+        .message-box {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: right;
+            line-height: 1.8;
+            font-size: 15px;
+            color: #e2e8f0;
+            border-right: 4px solid #f43f5e;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <!-- رأس الصفحة قبل الفتح -->
+    <div id="locked-header">
+        <h2>🍾 كبسولة زمنية مغلقة</h2>
+        <p class="subtitle">خاصة بـ <b>Abderhman</b> | مخصص فتحها يوم الميلاد 🎂</p>
+        
+        <div class="timer-grid" id="timer">
+            <div class="time-box"><div class="num" id="days">00</div><div class="label">يوم</div></div>
+            <div class="time-box"><div class="num" id="hours">00</div><div class="label">ساعة</div></div>
+            <div class="time-box"><div class="num" id="minutes">00</div><div class="label">دقيقة</div></div>
+            <div class="time-box"><div class="num" id="seconds">00</div><div class="label">ثانية</div></div>
+        </div>
+        <p style="font-size: 13px; color: #64748b;">⏳ سيتفتح المحتوى تلقائياً بمجرد انتهاء العداد!</p>
+    </div>
+
+    <!-- المحتوى المخفي (بيفتح يوم 1/12/2026) -->
+    <div class="secret-content" id="secret">
+        <h1 style="color: #f43f5e; margin-bottom: 15px;">🎉 كل سنة وأنت طيب يا عبدالرحمن! 🎂</h1>
+        
+        <!-- رابط الصورة -->
+        <img src="https://via.placeholder.com/150" alt="Abderhman" class="profile-img" id="myImage">
+
+        <div class="message-box">
+            <p>🌟 <b>النهاردة كملت 24 سنة! (1/12/2002 - 1/12/2026)</b></p>
+            <br>
+            <p>رحلة جديدة وسنة جديدة بتنضم لعمرك.. كل سنة وأنت أطمح، أنجح، وأقرب لكل حلم بتسعى له. السنة دي بداية لمرحلة مختلفة في حياتك، خطوة جديدة في صانع المحتوى والتطوير والنجاحات الشديدة! 🚀</p>
+            <br>
+            <p>افتكر دايماً إن التعب والتعلم والمجهود اللي بتعمله النهاردة هو اللي بيصنع المستقبل الاحترافي اللي يستاهلك. كل سنة وأنت طيب وبخير يا بطل! ❤️✨</p>
+        </div>
+
+        <!-- ملف الصوت -->
+        <audio id="birthdaySong" src="song.mp3" preload="auto"></audio>
+    </div>
+</div>
+
+<script>
+    // موعد الفتح: 1 ديسمبر 2026 الساعة 00:00:00 (منتصف الليل)
+    const targetDate = new Date("2026-12-01T00:00:00").getTime(); 
+
+    const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance <= 0) {
+            clearInterval(interval);
+            document.getElementById("locked-header").style.display = "none";
+            document.getElementById("secret").style.display = "block";
+            
+            // تشغيل الأغنية تلقائياً عند الفتح
+            const song = document.getElementById("birthdaySong");
+            if (song) { song.play().catch(e => console.log("Audio play blocked")); }
+        } else {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance %Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
